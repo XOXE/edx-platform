@@ -144,7 +144,7 @@ itypes==1.1.0             # via coreapi
 jinja2==2.11.1            # via code-annotations, coreschema
 jmespath==0.9.4           # via boto3, botocore
 jsondiff==1.2.0           # via edx-enterprise
-jsonfield2==3.0.3         # via edx-celeryutils, edx-enterprise, edx-proctoring, edx-submissions
+jsonfield2==3.0.3
 jsonfield==2.0.2
 kombu==3.0.37             # via celery
 laboratory==1.0.2
