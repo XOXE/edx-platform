@@ -36,13 +36,15 @@
                 'previousLanguageMenuItem', 'nextLanguageMenuItem', 'handleCaptionToggle',
                 'showClosedCaptions', 'hideClosedCaptions', 'toggleClosedCaptions',
                 'updateCaptioningCookie', 'handleCaptioningCookie', 'handleTranscriptToggle',
-                'listenForDragDrop'
+                'listenForDragDrop' , 'handleTranscriptCookie','updateTranscriptCookie'
             );
+
             this.state = state;
             this.state.videoCaption = this;
             this.renderElements();
             this.handleCaptioningCookie();
             this.listenForDragDrop();
+            this.handleTranscriptCookie();
 
             return $.Deferred().resolve().promise();
         };
@@ -1142,11 +1144,13 @@
             */
             toggle: function(event) {
                 event.preventDefault();
-
+                console.log(this.state.el.hasClass('closed'))
                 if (this.state.el.hasClass('closed')) {
                     this.hideCaptions(false, true, true);
+                    this.updateTranscriptCookie(true);
                 } else {
                     this.hideCaptions(true, true, true);
+                    this.updateTranscriptCookie(false);
                 }
             },
 
@@ -1228,6 +1232,33 @@
                     });
                 } else {
                     $.cookie('show_closed_captions', null, {
+                        path: '/'
+                    });
+                }
+            },
+            handleTranscriptCookie: function() {
+                if ($.cookie('show_transcript') === 'true') {
+                    this.state.hideCaptions = false
+                    this.hideCaptions(false, true, true);
+                    // keep it going until turned off
+                    $.cookie('show_transcript', 'true', {
+                        expires: 3650,
+                        path: '/'
+                    });
+                } else {
+                    this.state.hideCaptions = true
+                    this.hideCaptions(true, true, true);
+                }
+            },
+            updateTranscriptCookie: function(method) {
+                this.state.hideCaptions = method;
+                if (method) {
+                    $.cookie('show_transcript', 'true', {
+                        expires: 3650,
+                        path: '/'
+                    });
+                } else {
+                    $.cookie('show_transcript', null, {
                         path: '/'
                     });
                 }
