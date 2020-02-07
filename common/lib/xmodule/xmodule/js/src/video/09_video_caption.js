@@ -1144,7 +1144,6 @@
             */
             toggle: function(event) {
                 event.preventDefault();
-                console.log(this.state.el.hasClass('closed'))
                 if (this.state.el.hasClass('closed')) {
                     this.hideCaptions(false, true, true);
                     this.updateTranscriptCookie(true);
@@ -1238,7 +1237,6 @@
             },
             handleTranscriptCookie: function() {
                 if ($.cookie('show_transcript') === 'true') {
-                    this.state.hideCaptions = false
                     this.hideCaptions(false, true, true);
                     // keep it going until turned off
                     $.cookie('show_transcript', 'true', {
@@ -1251,7 +1249,6 @@
                 }
             },
             updateTranscriptCookie: function(method) {
-                this.state.hideCaptions = method;
                 if (method) {
                     $.cookie('show_transcript', 'true', {
                         expires: 3650,
