@@ -171,7 +171,6 @@ jinja2==2.11.1
 jmespath==0.9.4
 jsondiff==1.2.0
 jsonfield2==3.0.3
-jsonfield==2.0.2
 jsonschema==3.2.0         # via sphinxcontrib-openapi
 kombu==3.0.37
 laboratory==1.0.2
