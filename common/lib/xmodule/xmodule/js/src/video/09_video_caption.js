@@ -1236,7 +1236,7 @@
                 }
             },
             handleTranscriptCookie: function() {
-                if ($.cookie('show_transcript') === 'true') {
+                if ($.cookie('show_transcript') === 'true' || $.cookie('show_transcript') === null) {
                     this.hideCaptions(false, true, true);
                     // keep it going until turned off
                     $.cookie('show_transcript', 'true', {
@@ -1255,7 +1255,7 @@
                         path: '/'
                     });
                 } else {
-                    $.cookie('show_transcript', null, {
+                    $.cookie('show_transcript', 'false', {
                         path: '/'
                     });
                 }
