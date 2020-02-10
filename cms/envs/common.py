@@ -566,7 +566,7 @@ XQUEUE_INTERFACE = {
 
 ################################# Middleware ###################################
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'openedx.core.lib.x_forwarded_for.middleware.XForwardedForMiddleware',
 
     'crum.CurrentRequestUserMiddleware',
@@ -1417,6 +1417,9 @@ INSTALLED_APPS = [
 
     # so sample_task is available to celery workers
     'openedx.core.djangoapps.heartbeat',
+
+    # signal handlers to capture course dates into edx-when
+    'openedx.core.djangoapps.course_date_signals',
 ]
 
 
