@@ -36,7 +36,7 @@
                 'previousLanguageMenuItem', 'nextLanguageMenuItem', 'handleCaptionToggle',
                 'showClosedCaptions', 'hideClosedCaptions', 'toggleClosedCaptions',
                 'updateCaptioningCookie', 'handleCaptioningCookie', 'handleTranscriptToggle',
-                'listenForDragDrop' , 'handleTranscriptCookie','updateTranscriptCookie'
+                'listenForDragDrop', 'handleTranscriptCookie', 'updateTranscriptCookie'
             );
 
             this.state = state;
@@ -1146,10 +1146,10 @@
                 event.preventDefault();
                 if (this.state.el.hasClass('closed')) {
                     this.hideCaptions(false, true, true);
-                    this.updateTranscriptCookie(true);
+                    // this.updateTranscriptCookie(true);
                 } else {
                     this.hideCaptions(true, true, true);
-                    this.updateTranscriptCookie(false);
+                    // this.updateTranscriptCookie(false);
                 }
             },
 
@@ -1236,7 +1236,7 @@
                 }
             },
             handleTranscriptCookie: function() {
-                if ($.cookie('show_transcript') === 'true' || $.cookie('show_transcript') === null) {
+                if ($.cookie('show_transcript') === 'true' || this.state.hideCaptions === false) {
                     this.hideCaptions(false, true, true);
                     // keep it going until turned off
                     $.cookie('show_transcript', 'true', {
@@ -1244,7 +1244,7 @@
                         path: '/'
                     });
                 } else {
-                    this.state.hideCaptions = true
+                    this.state.hideCaptions = true;
                     this.hideCaptions(true, true, true);
                 }
             },
